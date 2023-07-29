@@ -8,16 +8,14 @@ import Navigation from '../src/Navigation';
 
 function App() {
   return (
-    <div className='d-flex h-100'>
       <BrowserRouter>
-        <Navigation />
+      <Navigation />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
         </Routes>
       </BrowserRouter>
-    </div>
   );
 }
 
