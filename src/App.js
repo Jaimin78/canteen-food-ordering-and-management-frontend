@@ -5,17 +5,22 @@ import Login from '../src/Login';
 import Register from '../src/Register';
 import Home from '../src/Home';
 import Navigation from '../src/Navigation';
+import PrivateComponent from '../src/PrivateComponent';
 
 function App() {
   return (
-      <BrowserRouter>
+    <BrowserRouter>
       <Navigation />
-        <Routes>
+      <Routes>
+        <Route element={<PrivateComponent />}>
           <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-        </Routes>
-      </BrowserRouter>
+
+        </Route>
+
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
