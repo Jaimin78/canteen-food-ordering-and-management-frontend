@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
     return (
@@ -10,46 +11,46 @@ const Navigation = () => {
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
                 <li className="nav-item">
-                    <a href="#" className="nav-link active" aria-current="page">
+                    <Link as={Link} to='/' className="nav-link active" aria-current="page">
                         <i className="bi bi-house-door me-2"></i>
                         Home
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#" className="nav-link text-white">
+                    <Link as={Link} to='/status' href="/" className="nav-link text-white">
                         <i className="bi bi-hourglass-split me-2"></i>
                         Order Status
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#" className="nav-link text-white">
+                    <Link as={Link} to='/' className="nav-link text-white">
                         <i className="bi bi-clock-history me-2"></i>
                         Past Orders
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#" className="nav-link text-white">
+                    <Link as={Link} to='/' className="nav-link text-white">
                         <i className="bi bi-send me-2"></i>
                         Contact Us
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#" className="nav-link text-white">
+                    <Link as={Link} to='/' className="nav-link text-white">
                         <i className="bi bi-question-diamond-fill me-2"></i>
                         About Us
-                    </a>
+                    </Link>
                 </li>
             </ul>
             <hr />
             <div className="dropdown">
-                <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="/" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
                     <strong>Jaimin Suthar</strong>
                 </a>
                 <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li><a className="dropdown-item" href="#">Profile</a></li>
+                    <li><a className="dropdown-item" href="/">Profile</a></li>
                     <li><hr className="dropdown-divider" /></li>
-                    <li><a className="dropdown-item" href="#">Sign out</a></li>
+                    <li><a className="dropdown-item" href="/">Sign out</a></li>
                 </ul>
             </div>
         </div>
