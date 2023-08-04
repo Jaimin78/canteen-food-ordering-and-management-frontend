@@ -6,7 +6,7 @@ import Register from '../src/Register';
 import Home from '../src/Home';
 import OrderStatus from '../src/OrderStatus';
 import PrivateComponent from '../src/PrivateComponent';
-
+import ShoppingCart from '../src/ShoppingCart';
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +14,7 @@ function App() {
         <Route element={<PrivateComponent />}>
           <Route path='/' element={<Home />} />
           <Route path='/status' element={<OrderStatus />} />
+          <Route path='/cart' element={<ShoppingCart />} />
         </Route>
 
         <Route path='/login' element={<Login />} />

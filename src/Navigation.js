@@ -42,11 +42,15 @@ const Navigation = () => {
                 </li>
             </ul>
             <hr />
-            <div className="dropdown">
+            <div className="dropdown d-flex justify-content-between">
                 <a href="/" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
                     <strong>Jaimin Suthar</strong>
                 </a>
+                <span className="cart-count">0</span>
+                <Link as={Link} to='/cart'>
+                    <i style={{ fontSize: '20px', color:'white' }} class="bi bi-cart2"></i>
+                </Link>
                 <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
                     <li><a className="dropdown-item" href="/">Profile</a></li>
                     <li><hr className="dropdown-divider" /></li>
