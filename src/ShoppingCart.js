@@ -1,58 +1,43 @@
-import React, { useState } from 'react';
-import Navigation from '../src//Navigation';
+import React, { useContext } from 'react';
+import Navigation from '../src/Navigation';
+import { Globaldata } from '../src/App';
 
 const ShoppingCart = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Product 1', price: 10, quantity: 1, image: 'pizza.jpg' },
-    { id: 2, name: 'Product 2', price: 20, quantity: 1, image: 'pizza.jpg' },
-    { id: 3, name: 'Product 3', price: 15, quantity: 1, image: 'pizza.jpg' }
-  ]);
+  const cart = useContext(Globaldata);
 
+  
   const updateQuantity = (id, newQuantity) => {
-    const updatedItems = cartItems.map(item =>
-      item.id === id ? { ...item, quantity: newQuantity } : item
-    );
-    setCartItems(updatedItems);
+    // Implement your updateQuantity function logic here
   };
 
   const removeItem = (id) => {
-    const updatedItems = cartItems.filter(item => item.id !== id);
-    setCartItems(updatedItems);
+    // Implement your removeItem function logic here
   };
 
   const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cart.reduce((total, item) => {
+      const itemTotal = item.price * (item.quantity || 1); // Default quantity to 1 if not defined
+      return total + itemTotal;
+    }, 0);
   };
+  
 
   return (
     <>
       <Navigation />
       <div className="w-100">
-          <div className="title">Your Shopping Cart</div>
+        <div className="title">Your Shopping Cart</div>
         <div className="container">
           <div className="row d-flex justify-content-center mt-3">
-            {cartItems.map(item => (
+            {cart.map(item => (
               <div key={item.id} className="col-md-2 mb-4">
                 <div className="card">
-                  <img src={item.image} className="card-img-top" alt={item.name} />
+                  <img src={`http://localhost:5000/uploads/${item.image}`} className="card-img-top" alt={item.name} />
                   <div className="card-body">
                     <h5 className="card-title">{item.name}</h5>
                     <p className="card-text">Price: ${item.price}</p>
                     <div className="d-flex align-items-center">
-                      <button
-                        className="btn btn-secondary"
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        disabled={item.quantity === 1}
-                      >
-                        -
-                      </button>
-                      <span className="mx-3">{item.quantity}</span>
-                      <button
-                        className="btn btn-secondary"
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      >
-                        +
-                      </button>
+                      {/* Update quantity and remove item buttons */}
                     </div>
                     <button className="btn btn-danger mt-3" onClick={() => removeItem(item.id)}>
                       Remove
@@ -69,7 +54,6 @@ const ShoppingCart = () => {
         </div>
       </div>
     </>
-
   );
 };
 
