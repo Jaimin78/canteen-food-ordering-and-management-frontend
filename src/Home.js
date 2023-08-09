@@ -1,10 +1,12 @@
-import React, {useEffect, useState } from "react";
+import React, {useEffect, useState, useContext } from "react";
 import Navigation from "../src/Navigation";
+import { Globaldata } from '../src/App';
 import './App.css';
 
-const Home = ({ updateCart }) => {
+const Home = () => {
+    const {cart, setCart} = useContext(Globaldata);
     const [items, setItems] = useState([]);
-    const [cart, setCart] = useState([]);
+    //const [cart, setCart] = useState([]);
 
     useEffect(() => {
         getItem();
@@ -32,8 +34,9 @@ const Home = ({ updateCart }) => {
     };
 
     const addToCart = (item) => {
-        setCart(prevCart => [...prevCart, item]);
-        updateCart([...cart, item]); // Call the updateCart function to send cart data to App.js
+       // updateCart(prevCart => [...prevCart, item]);
+        //updateCart(item); // Call the updateCart function to send cart data to App.js
+        setCart([...cart, item])
     }
 
     return (

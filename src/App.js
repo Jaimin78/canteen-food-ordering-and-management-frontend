@@ -15,16 +15,12 @@ function App() {
 
   const [cart, setCart] = useState([]);
 
-  const updateCart = (newCart) => {
-    setCart(newCart);
-  };
-
   return (
-    <Globaldata.Provider value={cart} >
+    <Globaldata.Provider value={{cart, setCart}} >
       <BrowserRouter>
         <Routes>
           <Route element={<PrivateComponent />}>
-            <Route path='/' element={<Home updateCart={updateCart} />} />
+            <Route path='/' element={<Home />} />
             <Route path='/status' element={<OrderStatus />} />
             <Route path='/cart' element={<ShoppingCart />} />
           </Route>
