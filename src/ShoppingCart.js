@@ -6,6 +6,7 @@ const ShoppingCart = () => {
   const { cart, setCart } = useContext(Globaldata);
   const [order, setOrder] = useState([]);
 
+  //Savaing all order Details in state
   useEffect(() => {
     let userDetails = JSON.parse(localStorage.getItem('user'));
     setOrder({
@@ -18,6 +19,24 @@ const ShoppingCart = () => {
     })
   }, [cart]);
 
+
+  //Remove item from cart
+  const removeItem = (index) => {
+    // Remove the item at the given index from cartData
+    const updatedCart = [...cart];
+    updatedCart.splice(index, 1);
+    setCart(updatedCart);
+  };
+
+  //Calculate Total amount of all item
+  const calculateTotal = () => {
+    return cart.reduce((total, item) => {
+      const itemTotal = item.price * (item.quantity || 1); // Default quantity to 1 if not defined
+      return total + itemTotal
+    }, 0);
+  };
+
+  //Extracting Order Quentity
   const orderCalculation = () => {
     const uniqueItems = {};
 
@@ -34,30 +53,36 @@ const ShoppingCart = () => {
         uniqueItems[item._id].quantity += 1;
       }
     });
-
     const uniqueItemsArray = Object.values(uniqueItems);
-
     return uniqueItemsArray;
   }
 
+  //Make a Order
+  const checkout = async () => {
+    try {
 
-  const checkout = () => {
-    console.log(order)
+      console.log(order)
+      let orderReq = await fetch('http://localhost:5000/api/item/order', {
+        method: 'post',
+        body: JSON.stringify(order),
+        headers: {
+          authorization: JSON.parse(localStorage.getItem('token')),
+          'Content-Type': 'application/json',
+          'Accept':'*/*'
+        }
+      });
+      orderReq = await orderReq.json();
+      if (orderReq) {
+        alert('Thank you For Ordering')
+        setCart([])
+      } else {
+        alert('Please try again')
+      }
+
+    } catch (error) {
+      alert('Please try again fg')
+    }
   }
-
-  const removeItem = (index) => {
-    // Remove the item at the given index from cartData
-    const updatedCart = [...cart];
-    updatedCart.splice(index, 1);
-    setCart(updatedCart);
-  };
-
-  const calculateTotal = () => {
-    return cart.reduce((total, item) => {
-      const itemTotal = item.price * (item.quantity || 1); // Default quantity to 1 if not defined
-      return total + itemTotal
-    }, 0);
-  };
 
   return (
     <>
