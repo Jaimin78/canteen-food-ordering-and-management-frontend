@@ -7,6 +7,7 @@ import Home from '../src/Home';
 import OrderStatus from '../src/OrderStatus';
 import PrivateComponent from '../src/PrivateComponent';
 import ShoppingCart from '../src/ShoppingCart';
+import PastOrder from '../src/PastOrder';
 
 // Create a context
 export const Globaldata = createContext();
@@ -23,6 +24,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/status' element={<OrderStatus />} />
             <Route path='/cart' element={<ShoppingCart />} />
+            <Route path='/past' element={<PastOrder />} />
           </Route>
 
           <Route path='/login' element={<Login />} />

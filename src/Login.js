@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -14,10 +14,10 @@ const Login = () => {
     })
 
     const login = async () => {
-    
+
         let result = await fetch('http://localhost:5000/api/user/login', {
             method: 'post',
-            body: JSON.stringify({email, password}),
+            body: JSON.stringify({ email, password }),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -49,10 +49,10 @@ const Login = () => {
                     />
 
                     <button type="submit" onClick={login} className="login-button">Login</button>
-                    <span>Don't have an Account? <strong>Register Now</strong></span>
-                </div>
+                    <span>Don't have an Account? <strong><Link as={Link} to='/register'>Register Now</Link></strong></span>
             </div>
-        </main>
+        </div>
+        </main >
     )
 }
 

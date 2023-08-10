@@ -2,11 +2,13 @@ import React, {useEffect, useState, useContext } from "react";
 import Navigation from "../src/Navigation";
 import { Globaldata } from '../src/App';
 import './App.css';
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
     const {cart, setCart} = useContext(Globaldata);
     const [items, setItems] = useState([]);
-    //const [cart, setCart] = useState([]);
+
+    const location = useLocation()
 
     useEffect(() => {
         getItem();
@@ -41,7 +43,7 @@ const Home = () => {
 
     return (
         <>
-                <Navigation />
+                <Navigation path={location.pathname} />
                 <div className="w-100 overflow-auto">
                     <div className="container">
                         <div className="title">Menu</div>
