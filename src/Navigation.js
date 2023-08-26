@@ -4,6 +4,7 @@ import { Globaldata } from "../src/App";
 const Navigation = (props) => {
     const { cart } = useContext(Globaldata);
 
+    let user = JSON.parse(localStorage.getItem('user'))
     const navigate = useNavigate();
     const logout = () => {
         localStorage.clear();
@@ -54,16 +55,16 @@ const Navigation = (props) => {
             <div className="dropdown d-flex justify-content-between">
                 <a href="/" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
-                    <strong>Jaimin Suthar</strong>
+                    <strong>{user.name}</strong>
                 </a>
                 <span className="cart-count">{cart.length}</span>
                 <Link as={Link} to='/cart'>
                     <i style={{ fontSize: '20px', color: 'white' }} className="bi bi-cart2"></i>
                 </Link>
                 <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li><a className="dropdown-item" href="/">Profile</a></li>
+                    <li><span className="dropdown-item">Profile</span></li>
                     <li><hr className="dropdown-divider" /></li>
-                    <li><a className="dropdown-item" onClick={logout}>Sign out</a></li>
+                    <li><span className="dropdown-item" onClick={logout}>Sign out</span></li>
                 </ul>
             </div>
         </div>

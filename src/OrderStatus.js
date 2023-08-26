@@ -60,7 +60,7 @@ const OrderStatus = () => {
                                                         {
                                                             item.orderDetails.map((detail, i) => (
                                                                 <tr key={i}>
-                                                                    <td><img src={`http://localhost:5000/uploads/${detail.image}`} width={50} /></td>
+                                                                    <td><img src={`http://localhost:5000/uploads/${detail.image}`} width={50} alt="Food img" /></td>
                                                                     <td>{detail.name}</td>
                                                                     <td>{detail.category}</td>
                                                                     <td>₹{detail.price}</td>
@@ -72,7 +72,7 @@ const OrderStatus = () => {
                                                 </table>
                                             </td>
                                             <td>₹{item.total}</td>
-                                            <td><button type="button" class={`btn btn-${item.status == 'Preparing'?'danger':'success'}`}>{item.status}</button></td>
+                                            <td><button type="button" className={`btn btn-${item.status === 'Preparing'?'danger':'success'}`}>{item.status}</button></td>
                                         </tr>
                                     ))
                                 }
